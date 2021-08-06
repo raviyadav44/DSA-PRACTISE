@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include<time.h>
+
+void SelectionSort(int arr[],int n){
+  int min,temp=0;
+  for(int i=0;i<n-1;i++){
+      min=i;
+      for (int j=i;j<n;j++){
+       if(arr[j]<arr[min]){
+         min=j; 
+      }
+      }
+      temp=arr[i];
+      arr[i]=arr[min];
+      arr[min]=temp;
+      
+  }  
+    
+}
+int main(void) {
+    int arr[]={1,5,7,8,45,76,23,45,79,62,69,12,35,77,64,71};
+    time_t start,end;
+    int CLOCK_PER_SEC=1000000;
+    int size=sizeof(arr)/sizeof(int);
+    for(int i=0;i<size;i++){
+        printf("Element :%d\n",arr[i]);
+    }
+    start=clock();
+    SelectionSort(arr,size);
+    end=clock();
+    for(int i=0;i<size;i++){
+        printf("Element :%d\n",arr[i]);
+    }
+	float time_taken=(end-start)/CLOCK_PER_SEC;
+	printf("Time taken in micro seconds :%f",time_taken);
+	return 0;
+}

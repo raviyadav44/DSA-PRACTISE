@@ -1,0 +1,92 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node{
+    int data;
+    struct Node * next;
+};
+
+
+
+void traversal(struct Node * ptr){
+    while(ptr!=NULL){
+        printf("Element: %d\n",ptr->data);
+        ptr=ptr->next;
+        
+    }
+}
+// case 1 : insert at start
+struct Node * Insertatstart(struct Node * head,int data){
+    struct Node * ptr=(struct Node*)malloc(sizeof(struct Node));
+    ptr->next=head;
+    ptr->data=data;
+    return ptr;
+    
+}
+// case2: insert at index
+struct Node * InsertatIndex(struct Node * head,int data,int index){
+    struct Node * ptr=(struct Node*)malloc(sizeof(struct Node));
+    struct Node * p=head;
+    int i=0;
+    while(i!=index-1){
+        p=p->next;
+        i++;
+    }
+    ptr->data=data;
+    ptr->next=p->next;
+    p->next=ptr;
+    return head;  
+    
+}
+// case 3: Insertion at End
+struct Node * InsertatEnd(struct Node * head,int data){
+    struct Node * ptr=(struct Node*)malloc(sizeof(struct Node));
+    struct Node * p=head;
+    ptr->data=data;
+    while(p->next!=NULL){
+        p=p->next;
+    }
+    ptr->next=NULL;
+    p->next=ptr;
+    
+    return head;
+}
+// case4: insert at particular position
+struct Node * InsertAfter(struct Node * head,struct Node * prev,int data){
+    struct Node * ptr=(struct Node*)malloc(sizeof(struct Node));
+    ptr->data=data;
+    ptr->next=prev->next;
+    prev->next=ptr;
+    
+    return head;
+}
+
+
+int main(void) {
+	// your code goes here
+	struct Node * head;
+	struct Node * Second;
+	struct Node * Third;
+// 	struct Node * inserted;
+	
+	head=(struct Node*)malloc(sizeof(struct Node));
+	Second=(struct Node*)malloc(sizeof(struct Node));
+	Third=(struct Node*)malloc(sizeof(struct Node));
+// 	inserted=(struct Node*)malloc(sizeof(struct Node));
+	
+	head->data=1;
+	head->next=Second;
+	Second->data=2;
+	Second->next=Third;
+	Third->data=3;
+	Third->next=NULL;
+// 	inserted->data=4;
+	
+	traversal(head);
+// 	head=Insertatstart(head,5);
+// head=InsertatIndex(head,5,2);
+    // head=InsertatEnd(head,5);
+    head=InsertAfter(head,Second,5);
+	traversal(head);
+	return 0;
+}
