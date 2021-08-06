@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include<time.h>
+
+void InsertionSort(int arr[],int size){
+    int hole,value;
+    for(int i=1;i<size;i++){
+        hole=i;
+        value=arr[i];
+        while(hole>0 && arr[hole-1]>value){
+          arr[hole]=arr[hole-1];
+          hole=hole-1;
+          
+        }
+        arr[hole]=value;
+    }
+    
+}
+int main(void) {
+    int arr[]={1,7,5,8,45,76,23,45,79,62,69,12,35,77,64,71};
+    time_t start,end;
+    int CLOCK_PER_SEC=1000000;
+    int size=sizeof(arr)/sizeof(int);
+    for(int i=0;i<size;i++){
+        printf("Element :%d\n",arr[i]);
+    }
+    start=clock();
+    printf("The number after shorting");
+    InsertionSort(arr,size);
+    end=clock();
+    for(int i=0;i<size;i++){
+        printf("Element :%d\n",arr[i]);
+    }
+	float time_taken=(end-start)/CLOCK_PER_SEC;
+	printf("Time taken in micro seconds :%f",time_taken);
+	return 0;
+}
