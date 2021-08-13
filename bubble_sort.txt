@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include<time.h>
+
+void Bubblesort(int arr[],int n){
+    int temp;
+    for(int i=0;i<n-1;i++){
+        
+       for(int j=0;j<n-i-1;j++){
+           if(arr[j]>arr[j+1]){
+               temp=arr[j+1];
+               arr[j+1]=arr[j];
+               arr[j]=temp;
+           }
+       } 
+    }
+    }
+int main(void) {
+    time_t start,end;
+    int CLOCK_PER_SEC=1000000;
+	// your code goes here
+	int arr[]={1,14,5,8,45,4,46};
+// 	int sorted[100];
+    int size;
+	size=sizeof(arr)/sizeof(int);
+	printf("The array before sorting :\n");
+	for(int i=0;i<size;i++){
+	    printf("%d\n",arr[i]);
+	}
+	printf("The array after sorting");
+	start=clock();
+	Bubblesort(arr,size);
+	end=clock();
+	for(int i=0;i<size;i++){
+	    printf("%d\n",arr[i]);
+	}
+	float time_taken=(end-start)/CLOCK_PER_SEC;
+	printf("Time taken in micro seconds :%f",time_taken);
+	return 0;
+}
