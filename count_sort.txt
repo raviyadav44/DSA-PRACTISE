@@ -1,0 +1,56 @@
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <stdio.h>
+#include<stdlib.h>
+void count_sort(int *A,int n){
+    int max,i,j;
+    max=A[0];
+    for(int i=0;i<n;i++){
+        if(A[i]>max){
+            max=A[i];
+        }
+    }
+    printf(" max is %d\n",max);
+    int array_len=max+1;
+    int *B=(int*)malloc(array_len*sizeof(int));
+    for(int j=0;j<array_len;j++){
+        B[j]=0;
+    }
+    for(int i=0;i<n;i++){
+        B[A[i]]=B[A[i]]+1;
+    }
+    i=0;//couter for count array i.e B
+    j=0;//counter for Given arrray i.e A
+    while(i<=max){
+        if(B[i]>0){
+          A[j]=i;
+          B[i]=B[i]-1;
+          j++;
+        }
+        else{
+            i++;
+        }
+    }
+    
+}
+
+int main()
+{
+    int A[]={4,46,48,9,79,69,36,14};
+    int n=8;
+    printf("The number before sorting:\n");
+    for(int i=0;i<n;i++){
+        printf("%d  ",A[i]);
+    }
+    count_sort(A,n);
+    printf("The array after sorting:\n");
+    for(int i=0;i<n;i++){
+        printf("%d  ",A[i]);
+    }
+}
